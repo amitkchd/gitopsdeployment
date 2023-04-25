@@ -9,20 +9,20 @@ node {
 
     stage('Build image') {
   
-       app = docker.build("rakhi12345/test")
+       app = docker.build("amitkchd/test")
     }
 
     stage('Test image') {
   
 
         app.inside {
-            sh 'echo "Tests passed"'
+            sh 'echo "Beta passed"'
         }
     }
 
     stage('Push image') {
         
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+        docker.withRegistry('https://registry.hub.docker.com', 'gitopsdeployment') {
             app.push("${env.BUILD_NUMBER}")
         }
     }
